@@ -3,7 +3,7 @@ const canvas = document.getElementById("drawingCanvas");
 const ctx = canvas.getContext("2d");
 const colorPicker = document.getElementById("colorPicker");
 const eraser = document.getElementById("eraser");
-const socket = io();
+const socket = io("https://canvas-collab.onrender.com");
 
 const brushSize = document.createElement("input");
 brushSize.type = "range";
