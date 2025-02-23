@@ -61,6 +61,19 @@ socket.on("draw", ({ x, y, lastX, lastY, color, size }) => {
     ctx.stroke();
 });
 
+// Load previous strokes when a new user joins
+socket.on("loadCanvas", (strokes) => {
+    strokes.forEach(({ x, y, lastX, lastY, color, size }) => {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = size;
+        ctx.lineCap = "round";
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    });
+});
+
 const cursorIndicator = document.createElement("div");
 cursorIndicator.id = "cursorIndicator";
 document.body.appendChild(cursorIndicator);
